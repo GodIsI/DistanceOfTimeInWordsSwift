@@ -1,0 +1,22 @@
+/**
+ English - Localizations for Distance Of Time In Words
+*/
+"LessThan5Seconds" = "less than 5 seconds";
+"LessThan10Seconds" = "less than 10 seconds";
+"LessThan20Seconds" = "less than 20 seconds";
+"LessThanHalfMinute" = "half a minute";
+"LessThanAMinute" = "less than a minute";
+"GreaterThanAMinute" = "1 minute";
+"OneMinute" = "1 minute";
+"XMinutes" = "%@ minutes";
+"OneHour" = "about 1 hour";
+"XHours" = "about %@ hours";
+"OneDay" = "1 day";
+"XDays" = "%@ days";
+"OneMonth" = "about 1 month";
+"TwoMonth" = "about 2 months";
+"XMonths" = "%@ months";
+"OneYear" = "about 1 year";
+"Over1Year" = "over 1 year";
+"Almost2Years" = "almost 2 years";
+"Over2Years" = "over 2 years";
