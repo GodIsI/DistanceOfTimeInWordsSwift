@@ -187,6 +187,100 @@ class DistanceOfTimeInWordsTests: XCTestCase {
         }
     }
 
+    func testDistanceOfTimeInWordsWithAControlledDateComparedToADateRandomMinutesBetween2And44With29SecondsLaterShouldCorrectRandomMinutes() {
+        self.measureBlock {
+            // Setup
+            let expectedMinutes = Int(arc4random_uniform(44) + 1)
+            let testDate = self.createDate(self.year, month:self.month, day:self.day, hours:self.hours, minutes:self.minutes, seconds:0)
+            let comparedDate = self.createDate(self.year, month:self.month, day:self.day, hours:self.hours, minutes:expectedMinutes, seconds:29)
+            let expected = String.localizedStringWithFormat(NSLocalizedString(DistanceOfTimeInWordLocalizationKeys.XMinutes, comment: String.empty), "\(expectedMinutes)")
+
+            // Test
+            let result = testDate.distanceOfTimeInWords(comparedDate)
+
+            // Analysis
+            XCTAssertEqual(expected, result, "Random minutes: \(expectedMinutes) between 2 and 44 : \(testDate) comparedDate: \(comparedDate)")
+        }
+    }
+
+    func testDistanceOfTimeInWordsWithAControlledDateComparedToADateRandomMinutesBetween2And43With30SecondsLaterShouldCorrectRandomMinutes() {
+        self.measureBlock {
+            // Setup
+            let inputMinutes = Int(arc4random_uniform(43) + 1)
+            let expectedMinutes = inputMinutes + 1
+            let testDate = self.createDate(self.year, month:self.month, day:self.day, hours:self.hours, minutes:self.minutes, seconds:0)
+            let comparedDate = self.createDate(self.year, month:self.month, day:self.day, hours:self.hours, minutes:inputMinutes, seconds:30)
+            let expected = String.localizedStringWithFormat(NSLocalizedString(DistanceOfTimeInWordLocalizationKeys.XMinutes, comment: String.empty), "\(expectedMinutes)")
+
+            // Test
+            let result = testDate.distanceOfTimeInWords(comparedDate)
+
+            // Analysis
+            XCTAssertEqual(expected, result, "Random minutes: \(inputMinutes) expect it to be rounded to \(expectedMinutes) between 2 and 44 : \(testDate) comparedDate: \(comparedDate)")
+        }
+    }
+
+    func testDistanceOfTimeInWordsWithAControlledDateComparedToADate44Minutes30SecondsLaterShouldReturnAboutOneHour() {
+        self.measureBlock {
+            // Setup
+            let expectedMinutes = 44
+            let testDate = self.createDate(self.year, month:self.month, day:self.day, hours:self.hours, minutes:self.minutes, seconds:0)
+            let comparedDate = self.createDate(self.year, month:self.month, day:self.day, hours:self.hours , minutes:expectedMinutes, seconds:30)
+            let expected = String.localizedStringWithFormat(NSLocalizedString(DistanceOfTimeInWordLocalizationKeys.OneHour, comment: String.empty))
+
+            // Test
+            let result = testDate.distanceOfTimeInWords(comparedDate)
+
+            // Analysis
+            XCTAssertEqual(expected, result, "Bottom end boundry test testDate: \(testDate) comparedDate: \(comparedDate)")
+        }
+    }
+
+    func testDistanceOfTimeInWordsWithAControlledDateComparedToADate44Minutes29SecondsLaterShouldNotReturnAboutOneHour() {
+        self.measureBlock {
+            // Setup
+            let testDate = self.createDate(self.year, month:self.month, day:self.day, hours:self.hours, minutes:self.minutes, seconds:0)
+            let comparedDate = self.createDate(self.year, month:self.month, day:self.day, hours:self.hours , minutes:44, seconds:29)
+            let expected = String.localizedStringWithFormat(NSLocalizedString(DistanceOfTimeInWordLocalizationKeys.OneHour, comment: String.empty))
+
+            // Test
+            let result = testDate.distanceOfTimeInWords(comparedDate)
+
+            // Analysis
+            XCTAssertNotEqual(expected, result, "Bottom end boundry test testDate: \(testDate) comparedDate: \(comparedDate)")
+        }
+    }
+
+    func testDistanceOfTimeInWordsWithAControlledDateComparedToADate89Minutes29SecondsLaterShouldReturnAboutOneHour() {
+        self.measureBlock {
+            // Setup
+            let testDate = self.createDate(self.year, month:self.month, day:self.day, hours:self.hours, minutes:self.minutes, seconds:0)
+            let comparedDate = self.createDate(self.year, month:self.month, day:self.day, hours:13 , minutes:29, seconds:29)
+            let expected = String.localizedStringWithFormat(NSLocalizedString(DistanceOfTimeInWordLocalizationKeys.OneHour, comment: String.empty))
+
+            // Test
+            let result = testDate.distanceOfTimeInWords(comparedDate)
+
+            // Analysis
+            XCTAssertEqual(expected, result, "Bottom end boundry test testDate: \(testDate) comparedDate: \(comparedDate)")
+        }
+    }
+
+    func testDistanceOfTimeInWordsWithAControlledDateComparedToADate89Minutes30SecondsLaterShouldNotReturnAboutOneHour() {
+        self.measureBlock {
+            // Setup
+            let testDate = self.createDate(self.year, month:self.month, day:self.day, hours:self.hours, minutes:self.minutes, seconds:0)
+            let comparedDate = self.createDate(self.year, month:self.month, day:self.day, hours:1 , minutes:29, seconds:30)
+            let expected = String.localizedStringWithFormat(NSLocalizedString(DistanceOfTimeInWordLocalizationKeys.OneHour, comment: String.empty))
+
+            // Test
+            let result = testDate.distanceOfTimeInWords(comparedDate)
+
+            // Analysis
+            XCTAssertNotEqual(expected, result, "Top end boundry test testDate: \(testDate) comparedDate: \(comparedDate)")
+        }
+    }
+
     internal func createDate(year:Int, month:Int, day:Int, hours:Int, minutes:Int, seconds:Int) -> NSDate {
         dateComponents.year = year
         dateComponents.month = month

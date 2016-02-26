@@ -12,9 +12,9 @@ public struct DistanceOfTimeInWordLocalizationKeys {
     static let GreaterThanAMinute = "GreaterThanAMinute"
     static let OneMinute = "OneMinute"
     static let XMinutes = "XMinutes"
-    static let OneHour = "1Hour"
+    static let OneHour = "OneHour"
     static let XHours = "XHours"
-    static let OneDay = "1Day"
+    static let OneDay = "OneDay"
     static let XDays = "XDays"
     static let OneMonth = "OneMonth"
     static let TwoMonths = "TwoMonths"
@@ -55,6 +55,8 @@ extension NSDate {
                     return String.empty
                 }
                 return String.localizedStringWithFormat(NSLocalizedString(DistanceOfTimeInWordLocalizationKeys.XMinutes, comment: String.empty), "\(value)")
+            case 2670...5369:
+                return NSLocalizedString(DistanceOfTimeInWordLocalizationKeys.OneHour, comment: String.empty)
             default:
                 return String.empty
             }
@@ -90,6 +92,8 @@ extension NSDate {
 30 secs <-> 1 min, 29 secs                                                # => 1 minute
 1 min, 30 secs <-> 44 mins, 29 secs                                       # => [2..44] minutes
 44 mins, 30 secs <-> 89 mins, 29 secs                                     # => about 1 hour
+
+
 89 mins, 30 secs <-> 23 hrs, 59 mins, 29 secs                             # => about [2..24] hours
 23 hrs, 59 mins, 30 secs <-> 41 hrs, 59 mins, 29 secs                     # => 1 day
 41 hrs, 59 mins, 30 secs  <-> 29 days, 23 hrs, 59 mins, 29 secs           # => [2..29] days
