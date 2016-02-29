@@ -1,8 +1,5 @@
-
 language: objective-c
-
 osx_image: xcode7.2
 xcode_project: DistanceOfTimeInWords.xcodeproj
 xcode_scheme: DistanceOfTimeInWords
-
 xcode_sdk: iphonesimulator8.4
