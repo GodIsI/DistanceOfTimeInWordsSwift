@@ -74,6 +74,8 @@ extension NSDate {
         case 5183970...31535999:
             let value = self.howManyTimesDoes(DivisionConstants.MonthsAsSeconds, appearsIn: difference)
             return String.localizedStringWithFormat(NSLocalizedString(DistanceOfTimeInWordLocalizationKeys.XMonths, comment: String.empty), "\(Int(value))")
+        case 31536000...39311999:
+            return String.localizedStringWithFormat(NSLocalizedString(DistanceOfTimeInWordLocalizationKeys.OneYear, comment: String.empty))
         default:
             return String.empty
         }
@@ -133,6 +135,7 @@ extension NSDate {
 59 days, 23 hrs, 59 mins, 30 secs <-> 1 yr minus 1 sec                    # => [2..12] months
 
 1 yr <-> 1 yr, 3 months                                                   # => about 1 year
+
 1 yr, 3 months <-> 1 yr, 9 months                                         # => over 1 year
 1 yr, 9 months <-> 2 yr minus 1 sec                                       # => almost 2 years
 2 yrs <-> max time or date                                                # => (same rules as 1 yr)
