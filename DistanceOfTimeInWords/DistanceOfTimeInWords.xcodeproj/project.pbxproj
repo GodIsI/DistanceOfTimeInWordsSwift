@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE8195921C86112200F62B20 /* NSDate+DistanceOfTimeInWordsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8195911C86112200F62B20 /* NSDate+DistanceOfTimeInWordsTests.swift */; };
+		FE8195951C86116200F62B20 /* NSDate+DistanceOfTimeInWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8195931C86116200F62B20 /* NSDate+DistanceOfTimeInWords.swift */; };
+		FE8195961C86116200F62B20 /* String+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8195941C86116200F62B20 /* String+Helpers.swift */; };
 		FECF13931C7DC160007060D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECF13921C7DC160007060D6 /* AppDelegate.swift */; };
 		FECF13951C7DC160007060D6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECF13941C7DC160007060D6 /* ViewController.swift */; };
 		FECF13981C7DC160007060D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FECF13961C7DC160007060D6 /* Main.storyboard */; };
 		FECF139A1C7DC160007060D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FECF13991C7DC160007060D6 /* Assets.xcassets */; };
 		FECF139D1C7DC160007060D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FECF139B1C7DC160007060D6 /* LaunchScreen.storyboard */; };
-		FECF13A81C7DC161007060D6 /* DistanceOfTimeInWordsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECF13A71C7DC161007060D6 /* DistanceOfTimeInWordsTests.swift */; };
-		FECF13B41C7DC1A5007060D6 /* NSDate+distanceOfTimeInWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECF13B31C7DC1A5007060D6 /* NSDate+distanceOfTimeInWords.swift */; };
 		FECF13B61C7DC2BF007060D6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FECF13B51C7DC2BF007060D6 /* Localizable.strings */; };
-		FECF13B81C7DCD20007060D6 /* String+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECF13B71C7DCD20007060D6 /* String+Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +29,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FE8195911C86112200F62B20 /* NSDate+DistanceOfTimeInWordsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+DistanceOfTimeInWordsTests.swift"; sourceTree = "<group>"; };
+		FE8195931C86116200F62B20 /* NSDate+DistanceOfTimeInWords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+DistanceOfTimeInWords.swift"; path = "Extensions/NSDate+DistanceOfTimeInWords.swift"; sourceTree = "<group>"; };
+		FE8195941C86116200F62B20 /* String+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Helpers.swift"; path = "Extensions/String+Helpers.swift"; sourceTree = "<group>"; };
 		FECF138F1C7DC160007060D6 /* DistanceOfTimeInWords.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DistanceOfTimeInWords.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FECF13921C7DC160007060D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FECF13941C7DC160007060D6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -37,11 +40,8 @@
 		FECF139C1C7DC160007060D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FECF139E1C7DC160007060D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FECF13A31C7DC161007060D6 /* DistanceOfTimeInWordsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DistanceOfTimeInWordsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FECF13A71C7DC161007060D6 /* DistanceOfTimeInWordsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceOfTimeInWordsTests.swift; sourceTree = "<group>"; };
 		FECF13A91C7DC161007060D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FECF13B31C7DC1A5007060D6 /* NSDate+distanceOfTimeInWords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+distanceOfTimeInWords.swift"; sourceTree = "<group>"; };
 		FECF13B51C7DC2BF007060D6 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = Resources/Localizable.strings; sourceTree = "<group>"; };
-		FECF13B71C7DCD20007060D6 /* String+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +98,7 @@
 		FECF13A61C7DC161007060D6 /* DistanceOfTimeInWordsTests */ = {
 			isa = PBXGroup;
 			children = (
-				FECF13A71C7DC161007060D6 /* DistanceOfTimeInWordsTests.swift */,
+				FE8195911C86112200F62B20 /* NSDate+DistanceOfTimeInWordsTests.swift */,
 				FECF13A91C7DC161007060D6 /* Info.plist */,
 			);
 			path = DistanceOfTimeInWordsTests;
@@ -107,8 +107,8 @@
 		FECF13B21C7DC16F007060D6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				FECF13B31C7DC1A5007060D6 /* NSDate+distanceOfTimeInWords.swift */,
-				FECF13B71C7DCD20007060D6 /* String+Helpers.swift */,
+				FE8195931C86116200F62B20 /* NSDate+DistanceOfTimeInWords.swift */,
+				FE8195941C86116200F62B20 /* String+Helpers.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -215,9 +215,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FECF13B81C7DCD20007060D6 /* String+Helpers.swift in Sources */,
+				FE8195961C86116200F62B20 /* String+Helpers.swift in Sources */,
+				FE8195951C86116200F62B20 /* NSDate+DistanceOfTimeInWords.swift in Sources */,
 				FECF13951C7DC160007060D6 /* ViewController.swift in Sources */,
-				FECF13B41C7DC1A5007060D6 /* NSDate+distanceOfTimeInWords.swift in Sources */,
 				FECF13931C7DC160007060D6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,7 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FECF13A81C7DC161007060D6 /* DistanceOfTimeInWordsTests.swift in Sources */,
+				FE8195921C86112200F62B20 /* NSDate+DistanceOfTimeInWordsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,10 +373,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = DistanceOfTimeInWordsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.plimmerton.DistanceOfTimeInWordsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DistanceOfTimeInWords.app/DistanceOfTimeInWords";
 			};
 			name = Debug;
@@ -385,6 +387,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = DistanceOfTimeInWordsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.plimmerton.DistanceOfTimeInWordsTests;
