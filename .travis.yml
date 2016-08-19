@@ -1,4 +1,5 @@
 language: objective-c
+- osx_image: xcode8
 script:
   - xctool -project /DistanceOfTimeInWords/DistanceOfTimeInWords -scheme DistanceOfTimeInWords \
 build test -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
