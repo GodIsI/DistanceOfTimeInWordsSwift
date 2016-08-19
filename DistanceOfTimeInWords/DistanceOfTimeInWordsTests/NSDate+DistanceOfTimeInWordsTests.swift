@@ -7,12 +7,14 @@
 //
 
 import XCTest
+import Foundation
+
 @testable import DistanceOfTimeInWords
 
 class DistanceOfTimeInWordsTests: XCTestCase {
 
     // MARK: Base Date Comparison
-    var dateComponents:NSDateComponents = NSDateComponents()
+    var dateComponents:DateComponents = DateComponents()
     var year:Int = 0
     var month:Int = 0
     var days:Int = 0
@@ -28,8 +30,8 @@ class DistanceOfTimeInWordsTests: XCTestCase {
         self.hours = 0
         self.minutes = 0
         self.seconds = 0
-        dateComponents = NSDateComponents()
-        dateComponents.calendar = NSCalendar.currentCalendar()
+        dateComponents = DateComponents()
+        dateComponents.calendar = NSCalendar.current
     }
 
     override func tearDown() {
@@ -38,9 +40,9 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithADateOfNowShouldReturnLessThanAMinute() {
-        self.measureBlock {
+        self.measure {
             // Setup
-            let testDate = NSDate()
+            let testDate = Date()
             let expected = NSLocalizedString(DistanceOfTimeInWordLocalizationKeys.LessThanAMinute, comment: String.empty)
 
             // Test
@@ -53,9 +55,9 @@ class DistanceOfTimeInWordsTests: XCTestCase {
 
     // MARK: 0 <-> 29 secs -> "less than a minute"
     func testDistanceOfTimeInWordsWithADateOfNowComparedToNowShouldReturnLessThanAMinute() {
-        self.measureBlock {
+        self.measure {
             // Setup
-            let testDate = NSDate()
+            let testDate = Date()
             let comparedDate = testDate
             let expected = NSLocalizedString(DistanceOfTimeInWordLocalizationKeys.LessThanAMinute, comment: String.empty)
 
@@ -68,7 +70,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate29SecondsLaterShouldReturnLessThanAMinute() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let testDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours, minutes:self.minutes, seconds:self.seconds)
             let comparedDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours, minutes:self.minutes, seconds:29)
@@ -83,7 +85,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate30SecondsLaterShouldNotReturnLessThanAMinute() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let testDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours, minutes:self.minutes, seconds:self.seconds)
             let comparedDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours, minutes:self.minutes, seconds:30)
@@ -99,7 +101,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
 
     // MARK: 30 secs <-> 1 min, 29 secs -> "1 minute"
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate30SecondsLaterShouldReturnOneMinute() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let testDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours, minutes:self.minutes, seconds:self.seconds)
             let comparedDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours, minutes:self.minutes, seconds:30)
@@ -114,7 +116,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate1Minute29SecondsLaterShouldReturnOneMinute() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let testDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours, minutes:self.minutes, seconds:self.seconds)
             let comparedDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours, minutes:1, seconds:29)
@@ -129,7 +131,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate1Minute30SecondsLaterShouldNotReturnOneMinute() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let testDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours, minutes:self.minutes, seconds:self.seconds)
             let comparedDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours, minutes:1, seconds:30)
@@ -145,7 +147,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
 
     // MARK: 1min, 30 sec <-> 44 mins 29 secs -> "[2...44] minutes"
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate1Minute30SecondsLaterShouldReturnTwoMinutes() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let expectedMinutes = 2
             let testDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours, minutes:self.minutes, seconds:self.seconds)
@@ -161,7 +163,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate44Minute29SecondsLaterShouldReturnFortyFourMinutes() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let expectedMinutes = 44
             let testDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours, minutes:self.minutes, seconds:self.seconds)
@@ -177,7 +179,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate44Minute30SecondsLaterShouldNotReturnFortyFourMinutes() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let expectedMinutes = 44
             let testDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours, minutes:self.minutes, seconds:self.seconds)
@@ -193,7 +195,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADateRandomMinutesBetween2And44With29SecondsLaterShouldCorrectRandomMinutes() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let expectedMinutes = Int(arc4random_uniform(43) + 2)
             let testDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours, minutes:self.minutes, seconds:self.seconds)
@@ -209,7 +211,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADateRandomMinutesBetween2And43With30SecondsLaterShouldCorrectRandomMinutes() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputMinutes = Int(arc4random_uniform(42) + 2)
             let expectedMinutes = inputMinutes + 1
@@ -227,7 +229,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
 
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADateBetween2And43MinutesWith30SecondsLaterShouldCorrectRandomMinutes() {
-        self.measureBlock {
+        self.measure {
             // Setup
 
             let testDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours, minutes:self.minutes, seconds:self.seconds)
@@ -245,7 +247,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate44Minutes30SecondsLaterShouldReturnAboutOneHour() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let expectedMinutes = 44
             let testDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours, minutes:self.minutes, seconds:self.seconds)
@@ -262,7 +264,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
 
     // MARK: 44 mins, 30 secs <-> 89 mins, 29 secs -> "about 1 hour"
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate44Minutes29SecondsLaterShouldNotReturnAboutOneHour() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let testDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours, minutes:self.minutes, seconds:self.seconds)
             let comparedDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours , minutes:44, seconds:29)
@@ -277,7 +279,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate1Minutes30SecondsLaterShouldReturnAboutOneHour() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let testDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours, minutes:self.minutes, seconds:self.seconds)
             let comparedDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours , minutes:44, seconds:30)
@@ -292,7 +294,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate89Minutes29SecondsLaterShouldReturnAboutOneHour() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let testDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours, minutes:self.minutes, seconds:self.seconds)
             let comparedDate = self.createDate(self.year, month:self.month, day:self.days, hours:1 , minutes:29, seconds:29)
@@ -307,7 +309,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate89Minutes30SecondsLaterShouldNotReturnAboutOneHour() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let testDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours, minutes:self.minutes, seconds:self.seconds)
             let comparedDate = self.createDate(self.year, month:self.month, day:self.days, hours:1 , minutes:29, seconds:30)
@@ -323,7 +325,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
 
     // MARK: 89 mins, 30 secs <-> 23 hrs, 59 mins, 29 secs -> "about [2...24] hours"
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate89Minutes29SecondsLaterShouldNotReturnAboutTwoHours() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputHours = 1
             let expectedHours =  inputHours + 1
@@ -340,7 +342,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate89Minutes30SecondsLaterShouldReturnAboutTwoHours() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputHours = 1
             let expectedHours =  inputHours + 1
@@ -357,7 +359,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate23Hours59Minutes29SecondsLaterShouldReturnAboutTwentyFourHours() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputHours = 23
             let expectedHours = inputHours + 1
@@ -374,7 +376,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate23Hours59Minutes30SecondsLaterShouldNotReturnAboutTwentyFourHours() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputHours = 23
             let expectedHours = inputHours + 1
@@ -391,7 +393,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADateBetween2And24HoursAnd29MinutesWith29SecondsLaterShouldReturnCorrectString() {
-        self.measureBlock {
+        self.measure {
             // Setup
 
             let testDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours, minutes:self.minutes, seconds:self.seconds)
@@ -410,7 +412,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
 
     // MARK: 23 hours, 59 mins, 30 secs <-> 41 hrs, 59 mins, 29 secs -> "1 day"
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate23Hours59Minutes30SecondsLaterShouldNotReturnOneDay() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputHours = 23
             let inputMinutes = 59
@@ -428,7 +430,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate23Hours59Minutes30SecondsLaterShouldReturnOneDay() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputHours = 23
             let testDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours, minutes:self.minutes, seconds:self.seconds)
@@ -444,7 +446,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate1day17Hours59Minutes29SecondsLaterShouldReturnOneDay() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputDays = self.days + 1
             let inputHours = 17
@@ -463,7 +465,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate1day17Hours59Minutes30SecondsLaterShouldNotReturnOneDay() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputDays = self.days + 1
             let inputHours = 17
@@ -483,7 +485,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
 
     // MARK: 41 hours, 59 mins, 30 secs <-> 29 days 23 hrs, 59 mins, 29 secs -> "about [2...29] days"
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate1day17Hours59Minutes30SecondsLaterShouldReturnTwoDays() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputDays = self.days + 1
             let inputHours = 17
@@ -502,7 +504,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADateBetween2And29Days23HoursAnd29MinutesWith29SecondsLaterShouldReturnCorrectString() {
-        self.measureBlock {
+        self.measure {
             // Setup
 
             let testDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours, minutes:self.minutes, seconds:self.seconds)
@@ -524,7 +526,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate29Days23Hours59Minutes29SecondsLaterShouldReturn29Days() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputDays = self.days + 29
             let inputHours = 23
@@ -543,7 +545,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate29Days23Hours59Minutes30SecondsLaterShouldNotReturn29Days() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputDays = self.days + 29
             let inputHours = 23
@@ -563,7 +565,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
 
     // MARK: 29 days, 23 hours, 59 mins, 30 secs <-> 44 days 23 hrs, 59 mins, 29 secs -> "about 1 month"
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate29Days23Hours59Minutes29SecondsLaterShouldNotReturnAboutOneMonth() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputDays = self.days + 29
             let inputHours = 23
@@ -582,7 +584,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate29Days23Hours59Minutes30SecondsLaterShouldReturnAboutOneMonth() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputDays = self.days + 29
             let inputHours = 23
@@ -601,7 +603,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate44Days23Hours59Minutes29SecondsLaterShouldReturnAboutOneMonth() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputMonths = self.month + 1
             let inputDays = 14
@@ -621,7 +623,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADat44Days23Hours59Minutes30SecondsLaterShouldNotReturnAboutOneMonth() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputMonths = self.month + 1
             let inputDays = 14
@@ -642,7 +644,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
 
     // MARK: 44 days, 23 hours, 59 mins, 30 secs <-> 59 days 23 hrs, 59 mins, 29 secs -> "about 2 month"
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate44Days23Hours59Minutes29SecondsLaterShouldNotReturnAboutTwoMonths() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputMonths = self.month + 1
             let inputDays = 14
@@ -662,7 +664,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate44Days23Hours59Minutes30SecondsLaterShouldReturnAboutTwoMonths() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputMonths = self.month + 1
             let inputDays = 14
@@ -682,7 +684,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate59Days23Hours59Minutes29SecondsLaterShouldReturnAboutTwoMonths() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputMonths = self.month + 1
             let inputDays = 29
@@ -702,7 +704,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADat44Days23Hours59Minutes30SecondsLaterShouldNotReturnAboutTwoMonths() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputMonths = self.month + 1
             let inputDays = 29
@@ -723,7 +725,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
 
     // MARK: 59 days, 23 hours, 59 mins, 30 secs <-> 1 Year(-1sec) -> "about [2...12] months"
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate59day23Hours59Minutes30SecondsLaterShouldReturnAboutTwoMonths() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputMonths = self.month + 1
             let inputDays = 29
@@ -743,7 +745,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADateBetween59Days23HoursAnd50MintuesAnd30SecondsAnd1YearLessASecondShouldReturnCorrectString() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let testDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours, minutes:self.minutes, seconds:self.seconds)
             for month in 2...11 {
@@ -778,7 +780,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate1YearLessASecondLaterShouldReturn12Months() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputMonths = self.month + 11
             let inputDays = 30
@@ -798,7 +800,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate1YearLaterShouldNotReturn12Months() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputYears = self.year + 1
             let testDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours, minutes:self.minutes, seconds:self.seconds)
@@ -815,7 +817,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
 
     // MARK: 1 year <-> 1 year, 3 months -> "about 1 year"
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate1YearLessASecondLaterShouldNotReturnAboutOneYear() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputMonths = self.month + 11
             let inputDays = 30
@@ -835,7 +837,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate1YearLaterShouldReturnAboutOneYear() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputYears = self.year + 1
             let testDate = self.createDate(self.year, month:self.month, day:self.days, hours:self.hours, minutes:self.minutes, seconds:self.seconds)
@@ -851,7 +853,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate1YearAnd3MonthsLessASecondLaterShouldReturnAboutOneYear() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputYears = 2015
             let inputMonths = 3
@@ -872,7 +874,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate1Year3MonthsLaterShouldNotReturnAboutOneYear() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputYears = 2015
             let inputMonths = 4
@@ -890,7 +892,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
 
     // MARK: 1 year, 3 months <-> 1 year, 9 months -> "over 1 year"
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate1Year3MonthsLessASecondLaterShouldNotReturnOverOneYear() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputYears = 2015
             let inputMonths = 3
@@ -910,17 +912,13 @@ class DistanceOfTimeInWordsTests: XCTestCase {
         }
     }
 
-    func testDistanceOfTimeInWordsWithAControlledDateComparedToADate1YearLaterShouldReturnOverOneYear() {
-        self.measureBlock {
+    func testDistanceOfTimeInWordsWithAControlledDateComparedToADate1Year4MonthsLaterShouldReturnOverOneYear() {
+        self.measure {
             // Setup
             let inputYears = 2015
             let inputMonths = 4
-            let inputDays = 1
-            let inputHours = 0
-            let inputMinutes = 0
-            let inputSeconds = 0
             let testDate = self.createDate(2014, month:self.month, day:self.days, hours:self.hours, minutes:self.minutes, seconds:self.seconds)
-            let comparedDate = self.createDate(inputYears, month:inputMonths, day:inputDays, hours:inputHours , minutes:inputMinutes, seconds:inputSeconds)
+            let comparedDate = self.createDate(inputYears, month:inputMonths, day:self.days, hours:self.hours , minutes:self.minutes, seconds:self.seconds)
             let expected = String.localizedStringWithFormat(NSLocalizedString(DistanceOfTimeInWordLocalizationKeys.Over1Year, comment: String.empty))
             // Test
             let result = testDate.distanceOfTimeInWords(comparedDate)
@@ -931,7 +929,7 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate1YearAnd9MonthsLessASecondLaterShouldReturnOverOneYear() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputYears = 2015
             let inputMonths = 8
@@ -952,16 +950,12 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     func testDistanceOfTimeInWordsWithAControlledDateComparedToADate1Year9MonthsLaterShouldNotReturnOverOneYear() {
-        self.measureBlock {
+        self.measure {
             // Setup
             let inputYears = 2015
-            let inputMonths = 9
-            let inputDays = 1
-            let inputHours = 0
-            let inputMinutes = 0
-            let inputSeconds = 0
+            let inputMonths = 10
             let testDate = self.createDate(2014, month:self.month, day:self.days, hours:self.hours, minutes:self.minutes, seconds:self.seconds)
-            let comparedDate = self.createDate(inputYears, month:inputMonths, day:inputDays, hours:inputHours , minutes:inputMinutes, seconds:inputSeconds)
+            let comparedDate = self.createDate(inputYears, month:inputMonths, day:self.days, hours:self.hours, minutes:self.minutes, seconds:self.seconds)
             let expected = String.localizedStringWithFormat(NSLocalizedString(DistanceOfTimeInWordLocalizationKeys.Over1Year, comment: String.empty))
 
             // Test
@@ -973,18 +967,18 @@ class DistanceOfTimeInWordsTests: XCTestCase {
     }
 
     // MARK: Internal Functions
-    internal func createDate(year:Int, month:Int, day:Int, hours:Int, minutes:Int, seconds:Int) -> NSDate {
+    internal func createDate(_ year:Int, month:Int, day:Int, hours:Int, minutes:Int, seconds:Int) -> Date {
         dateComponents.year = year
         dateComponents.month = month
         dateComponents.day = day
         dateComponents.hour = hours
         dateComponents.minute = minutes
         dateComponents.second = seconds
-        dateComponents.timeZone = NSTimeZone(forSecondsFromGMT: 0)
+        dateComponents.timeZone = TimeZone(secondsFromGMT:0)
 
         guard let date = dateComponents.date else {
             XCTAssertTrue(false, "Failed to create date from dateComponents")
-            return NSDate()
+            return Date()
         }
         return date
     }

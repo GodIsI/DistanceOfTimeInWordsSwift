@@ -4,7 +4,7 @@ import UIKit
 extension String {
 
     static let EmailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
-    private static let FullDateTimeString = "dd MMMM yyyy"
+    fileprivate static let FullDateTimeString = "dd MMMM yyyy"
 
     /**
      empty provides a way of being explicite that you wanted an empty string
@@ -41,8 +41,8 @@ extension String {
 
     var isValidEmail:Bool {
         do {
-            let regExpression = try NSRegularExpression(pattern: String.EmailRegex, options: .CaseInsensitive)
-            let matches = regExpression.numberOfMatchesInString(self, options: NSMatchingOptions.ReportCompletion, range: NSMakeRange(0, self.characters.count))
+            let regExpression = try NSRegularExpression(pattern: String.EmailRegex, options: .caseInsensitive)
+            let matches = regExpression.numberOfMatches(in: self, options: NSRegularExpression.MatchingOptions.reportCompletion, range: NSMakeRange(0, self.characters.count))
             if matches > 0 {
                 return true
             }
@@ -60,7 +60,7 @@ extension String {
      
      - returns: Formatted String with args inserted in order of appearance in the list
      */
-    func format(args:CVarArgType...) -> String {
+    func format(_ args:CVarArg...) -> String {
         return self.format(getVaList(args))
     }
 
@@ -70,7 +70,7 @@ extension String {
 
      - returns: Formatted String with args inserted in order of appearance in the list
      */
-    func format(args:CVaListPointer) -> String {
+    func format(_ args:CVaListPointer) -> String {
         return NSString(format: self, arguments: args) as String
     }
 
@@ -81,8 +81,8 @@ extension String {
 
      - returns: Height required for the current string
      */
-    func heightForText(font:UIFont, width: CGFloat) -> CGFloat {
-        let rect = NSString(string:self).boundingRectWithSize(CGSize(width:width, height:CGFloat.max), options:.UsesLineFragmentOrigin, attributes:[NSFontAttributeName:font], context:nil)
+    func heightForText(_ font:UIFont, width: CGFloat) -> CGFloat {
+        let rect = NSString(string:self).boundingRect(with: CGSize(width:width, height:CGFloat.greatestFiniteMagnitude), options:.usesLineFragmentOrigin, attributes:[NSFontAttributeName:font], context:nil)
         return ceil(rect.height)
     }
 
@@ -93,8 +93,8 @@ extension String {
 
      - returns: Width required for the current string
      */
-    func widthForText(font:UIFont, height:CGFloat) -> CGFloat {
-        let rect = NSString(string: self).boundingRectWithSize(CGSize(width: CGFloat.max, height: height), options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName:font], context: nil)
+    func widthForText(_ font:UIFont, height:CGFloat) -> CGFloat {
+        let rect = NSString(string: self).boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: height), options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName:font], context: nil)
         return ceil(rect.width)
     }
 
@@ -103,10 +103,10 @@ extension String {
 
      - returns: Date value or nil
      */
-    func toDate() -> NSDate? {
-        let dateFormatter = NSDateFormatter()
+    func toDate() -> Date? {
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = String.FullDateTimeString
-        guard let date = dateFormatter.dateFromString(self) else {
+        guard let date = dateFormatter.date(from: self) else {
             return nil
         }
         return date

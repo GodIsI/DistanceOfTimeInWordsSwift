@@ -25,18 +25,18 @@ public struct DistanceOfTimeInWordLocalizationKeys {
     static let Over2Years = "Over2Years"
 }
 
-extension NSDate {
+extension Date {
     struct DivisionConstants {
-        static let MinuteAsSeconds:NSTimeInterval = 60
-        static let HourAsSeconds:NSTimeInterval = 3600
-        static let DayAsSeconds:NSTimeInterval = 86400
-        static let MonthsAsSeconds:NSTimeInterval = 2628000
+        static let MinuteAsSeconds:TimeInterval = 60
+        static let HourAsSeconds:TimeInterval = 3600
+        static let DayAsSeconds:TimeInterval = 86400
+        static let MonthsAsSeconds:TimeInterval = 2628000
     }
     /**
      Distance Of Time In Words:
      */
     var distanceOfTimeInWords: String {
-        return self.distanceOfTimeInWords(NSDate())
+        return self.distanceOfTimeInWords(Date())
     }
 
     /**
@@ -45,17 +45,15 @@ extension NSDate {
      it will return accurancy of seconds, where not true or > 1 minute 29 seconds it will use the variable 'distanceOfTimeInWords'
      */
 
-    func distanceOfTimeInWords(compareToDate:NSDate = NSDate()) -> String {
-        let difference:NSTimeInterval = self.timeIntervalSinceDate(compareToDate) * -1
+    func distanceOfTimeInWords(_ compareToDate:Date = Date()) -> String {
+        let difference:TimeInterval = self.timeIntervalSince(compareToDate) * -1
         switch (difference) {
         case 0...29:
             return NSLocalizedString(DistanceOfTimeInWordLocalizationKeys.LessThanAMinute, comment: String.empty)
         case 30...89:
             return NSLocalizedString(DistanceOfTimeInWordLocalizationKeys.OneMinute, comment: String.empty)
         case 90...2669:
-            guard let value:Int = Int(round(difference / DivisionConstants.MinuteAsSeconds)) else {
-                return String.empty
-            }
+            let value = Int(round(difference / DivisionConstants.MinuteAsSeconds))
             return String.localizedStringWithFormat(NSLocalizedString(DistanceOfTimeInWordLocalizationKeys.XMinutes, comment: String.empty), "\(value)")
         case 2670...5369:
             return NSLocalizedString(DistanceOfTimeInWordLocalizationKeys.OneHour, comment: String.empty)
@@ -74,35 +72,27 @@ extension NSDate {
         case 5183970...31535999:
             let value = self.howManyTimesDoes(DivisionConstants.MonthsAsSeconds, appearsIn: difference)
             return String.localizedStringWithFormat(NSLocalizedString(DistanceOfTimeInWordLocalizationKeys.XMonths, comment: String.empty), "\(Int(value))")
-        case 31536000...42134399:
+        case 31536000...39311999:
             return String.localizedStringWithFormat(NSLocalizedString(DistanceOfTimeInWordLocalizationKeys.OneYear, comment: String.empty))
-        case 42134400...55123199:
+        case 39312000...52531199:
             return String.localizedStringWithFormat(NSLocalizedString(DistanceOfTimeInWordLocalizationKeys.Over1Year, comment: String.empty))
         default:
-            return String.empty
+            return .empty
         }
     }
 
-    internal func howManyTimesDoes(division:NSTimeInterval, appearsIn:NSTimeInterval) -> Int {
-        var times:Int
-        if (appearsIn % DivisionConstants.MinuteAsSeconds) <= 29 {
-            guard let value:Int = Int(round(appearsIn / division)) else {
-                return -1
-            }
-            times = value
+    internal func howManyTimesDoes(_ division:TimeInterval, appearsIn:TimeInterval) -> Int {
+        if (appearsIn.truncatingRemainder(dividingBy: DivisionConstants.MinuteAsSeconds)) <= 29 {
+            return Int(round(appearsIn / division))
         } else {
-            guard let value:Int = Int(ceil(appearsIn / division)) else {
-                return -1
-            }
-            times = value
+            return Int(ceil(appearsIn / division))
         }
-        return times
     }
 
-    func distanceOfTimeInWords(includeSeconds:Bool, compareToDate:NSDate = NSDate()) -> String {
+    func distanceOfTimeInWords(_ includeSeconds:Bool, compareToDate:Date = Date()) -> String {
 
         if includeSeconds {
-            let difference:NSTimeInterval = self.timeIntervalSinceNow * -1
+            let difference:TimeInterval = self.timeIntervalSinceNow * -1
             switch (difference) {
             case 0...4:
                 return String.empty
